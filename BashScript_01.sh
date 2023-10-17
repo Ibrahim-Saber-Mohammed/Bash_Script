@@ -5,12 +5,12 @@
 	Take the Selected Choice from the user
 User_Interface_Information
 
-
+mkdir "./PhoneDicts/"
 Choice=$(echo "Create a phone dictionary\nAdd new Contact info\nDelete contact\nDelete phone dictionary\nDisplay All Contacts\nExit" | rofi -dmenu -p "Select" -normal-window -steal-focus)
 
 
 if [ "${Choice}" = "Create a phone dictionary" ]; then
-	ls ./PhoneDicts > Dicts.txt
+	ls ./PhoneDicts > "./Dicts.txt"
 	Dictionary_name=$(cat "./Dicts.txt" | rofi -dmenu -p "Select / Add Dictionary name" -normal-window -steal-focus)
 	if [ -n ${Dictionary_name} ]; then
 		if [ -f "${Dictionary_name}" ]; then	
@@ -21,7 +21,7 @@ if [ "${Choice}" = "Create a phone dictionary" ]; then
 	fi
 	
 elif [ "${Choice}" = "Add new Contact info" ]; then
-	ls ./PhoneDicts > Dicts.txt
+	ls ./PhoneDicts > "./Dicts.txt"
 	Dictionary_name=$(cat "./Dicts.txt" | rofi -dmenu -p "Select" -normal-window -steal-focus)
 	if [ -n ${Dictionary_name} ]; then	
 		Name=$(echo " " | rofi -dmenu -P "Enter Contact name : " -normal-window -steal-focus)
@@ -30,10 +30,18 @@ elif [ "${Choice}" = "Add new Contact info" ]; then
 	fi
 	
 elif [ "${Choice}" = "Display All Contacts" ]; then
-	ls ./PhoneDicts > Dicts.txt
+	ls ./PhoneDicts > "./Dicts.txt"
 	Dictionary_name=$(cat "./Dicts.txt" | rofi -dmenu -p "Select" -normal-window -steal-focus)
 	if [ -n ${Dictionary_name} ]; then	
-		Name=$(cat "./PhoneDicts/${Dictionary_name}" | rofi -dmenu -normal-window -steal-focus)
+		Name=$(cat "./PhoneDicts/${Dictionary_name}" | rofi -dmenu -p " " -normal-window -steal-focus)
+	fi
+
+elif [ "${Choice}" = "Delete contact" ]; then
+	ls ./PhoneDicts > "./Dicts.txt"
+	Dictionary_name=$(cat "./Dicts.txt" | rofi -dmenu -p "Select" -normal-window -steal-focus)
+	if [ -n ${Dictionary_name} ]; then	
+		Name=$(cat "./PhoneDicts/${Dictionary_name}" | rofi -dmenu -p "Select :"-normal-window -steal-focus)
+		sed -i /"${Name}"/d ./PhoneDicts/${Dictionary_name} #Delete the line containning the selected name 
 	fi
 	
 fi
