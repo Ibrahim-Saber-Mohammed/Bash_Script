@@ -5,7 +5,6 @@
 	Take the Selected Choice from the user
 User_Interface_Information
 
-mkdir "./PhoneDicts/"
 Choice=$(echo "Create a phone dictionary\nAdd new Contact info\nDelete contact\nDelete phone dictionary\nDisplay All Contacts\nExit" | rofi -dmenu -p "Select" -normal-window -steal-focus)
 
 
