@@ -1,0 +1,3 @@
+/home/ibrahim/Desktop/GitHubRepos/C++
+/home/ibrahim/Desktop/GitHubRepos/BashScript
+/home/ibrahim/Desktop/GitHubRepos/Bash_Script
