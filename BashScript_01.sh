@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 <<User_Interface_Information
 	Display the aailable options to the user
